@@ -1,0 +1,111 @@
+ .head {
+    border-bottom: 2px solid black;
+
+        }
+    .content {
+    border: 2px solid black;
+    margin-bottom: 0px;
+    margin-top: 0;
+}
+
+h3 {
+    margin-bottom: 21px;
+    margin-top: -3px;
+}
+    .title {
+    text-align: left;
+    float: left;
+    width: 40%;
+}
+    .title1 {
+    text-align: left;
+    float: left;
+    width: 40%;
+}
+ 
+ 
+
+.footer.ss {
+    border: 1px solid;
+}
+
+.footer.aa {
+    border: 1px solid;
+}
+
+
+.colan {
+    float: left;
+    text-align: left;
+    width: 15%;
+}
+td.data {
+    float: left;
+    text-align: left;
+    width: 40%;
+}
+
+.earning {
+    border-bottom: 1px solid;
+    border-top: 1px solid black;
+    height: 185px;
+    margin-top: 0;
+}
+.detection {
+    border: 1px solid black;
+}
+
+.ear {
+    text-align: left;
+}
+.ear1 {
+    border-right: 1px solid;
+    text-align: left;
+}
+.earhead {
+    text-align: left;
+    border-bottom: 1px solid;
+}
+.earhead1 {
+    border: 1px solid;
+    border-top: 0px solid;
+    border-left: 0px solid;
+    text-align: left;
+}
+
+.earfoot {
+border-top: 1px solid;
+text-align: left;
+}
+.earfoot1 {
+border-top: 1px solid;
+border-right: 1px solid;
+text-align: left;
+}
+.det {
+    text-align: left;
+}
+.dethead {
+    text-align: left;
+    border-bottom: 1px solid;
+}
+.detfoot {
+    text-align: left;
+border-top: 1px solid;
+}
+
+.net {
+    text-align: left;
+    width: 15%;
+}
+.net1 {
+    text-align: left;
+    width: 5%;
+}
+.net2 {
+    text-align: left;
+}
+
+.netpay {
+    border-bottom: 1px solid black;
+}
