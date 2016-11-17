@@ -1,3 +1,4 @@
+<?php  /*print_r($data_edit);exit;*/?>
 <title>Inclusion-Deduction</title><div id="content" class="content">
 <!-- begin breadcrumb -->
 <ol class="breadcrumb pull-right">
@@ -80,7 +81,6 @@
 						
 					
 				   </div><br>
-					
 					<div class="row" id="HRA">
 						<div class="col-md-4">
 						   <div class="form-group">
@@ -129,6 +129,8 @@
             </div>
 		 <div class="modal-body">	 
 			<div class="row">
+			    	    
+
 				<form action="<?php echo base_url('payslipCtr/master_update_percentage');?>" method="post">
 				<div class="col-md-12">
 						<div class="col-md-offset-1 col-md-4">
@@ -172,7 +174,7 @@
 	   </div>
 	</div>
  </div>
-		
+    	
 <br>	
 <br>	
 
@@ -184,12 +186,14 @@
 			<thead>
 				<tr>
 					<th class="hide"></th>
-                   <th>Lable Name</th>
+					<th>Lable Name</th>
+					<!--<th>HR Percentage</th>
+					<th>DA Percentage</th>-->
 					<th>Type</th>
 					<th>Created date/time</th>
 				
 					<th>Active / Deactive</th>
-					<th>Delete</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody id="master_table">
@@ -201,17 +205,25 @@
                                     <td>
                                         <?php echo $row['field_name'];?>
                                     </td>
+				<!--     <td>
+                                        <?php echo $row['hra_per'];?>
+                                    </td>
+				     <td>
+                                        <?php echo $row['da_per'];?>
+                                    </td>-->
                                     <td>
                                         <?php echo $row['directed_type'];?>
                                     </td>
                                      <td>
                                         <?php echo $row['cr_date']; ?>
 				    </td>
-									<td>
-									    <input type="checkbox" name="check" value="<?php echo $row['flag'] ;?>" <?php if($row['flag']=='activate'){ echo 'checked';}?>  id="switchery"   class="lcs_check lcs_tt1" />
-                                    </td>
-									<td>
-                                        <button type="button" name="delete" id="delete"  value="delete" class="btn btn-xs btn-danger" onclick="delete_master( <?php  echo $row['id'] ?>, $(this) )"> <i class="fa fa-trash-o"></i></button> 
+				<td>
+					<input type="checkbox" name="check" value="<?php echo $row['flag'] ;?>" <?php if($row['flag']=='activate'){ echo 'checked';}?>  id="switchery"   class="lcs_check lcs_tt1" />
+				</td>
+				    <td>
+					<button type="button" name="delete" id="edit"  value="Edit" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#master_edit" onclick="edit_master( <?php  echo $row['id'] ?>, $(this) )"> <i class="glyphicon glyphicon-edit"></i></button>
+					<button type="button" name="delete" id="delete"  value="delete" class="btn btn-xs btn-danger" onclick="delete_master( <?php  echo $row['id'] ?>, $(this) )"> <i class="fa fa-trash-o"></i></button>
+
                                     </td>
 				</tr>
 				<?php } ?>
@@ -219,6 +231,68 @@
 			</table>
 	</div>
 </div>
+
+	<div class="container">
+
+	  <div class="modal fade" id="master_edit" role="dialog">
+	    <div class="modal-dialog modal-lg">
+	      <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal">&times;</button>
+		  <h4 class="modal-title">Modal Header</h4>
+		</div>
+		<div class="modal-body">
+		    <div class="row">
+			<!--<form action="<?php echo base_url('payslipCtr/');?>" method="post">-->
+			<div class="col-md-4">
+			   <div class="form-group">
+				   <label class="col-md-4 control-label">Name :</label>
+				   <div class="col-md-8">
+					  <select class="form-control selectpicker" name="field_name" id="edit_field">
+								 <option value="">Select</option>
+								 <option value="HRA">HRA</option>
+								 <option value="DA">DA</option>
+								 <option value="TA">TA</option>
+								 <option value="Incentive">Incentive</option>
+								 <option value="Increment">Increment</option>
+								 <option value="LOP">LOP</option>
+								 <option value="Advance">Advance salary if paid</option>
+								 <option value="Deduction">Other Deduction</option>
+					   </select>
+				   </div>
+				   </div>
+			   </div>
+			<input type="hidden" id="update_id" value="" name="id">
+			<div class="col-md-4">
+			   <div class="form-group">
+				   <label class="col-md-5 control-label">Add type :</label>
+				   <div class="col-md-7">
+					   <select class="form-control selectpicker" name="add_type" id="edit_addtype_error">
+						<option value="">Select</option>
+						<option value="Inclusion">Inclusion</option>
+						<option value="Deduction">Deduction</option>
+					   </select>
+				   </div>
+			   </div>
+		   </div>
+			<div class="col-md-4">
+			   <div class="form-group">
+			  <div class="col-md-4">
+				  <button type="submit" class="btn btn-sm btn-warning form-control" onclick="update_master_filed()" id="update_button">Update</button>
+			  </div>
+			</div>
+		   </div>
+<!--		</form>
+-->	   </div><br>
+		 
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	<br>
 	<br>
 	<br>
@@ -454,7 +528,8 @@ success:function(html){
 }
 
 function delete_master($id,$this)
-{console.log($this.parents('.oddClass'));
+{
+console.log($this.parents('.oddClass'));
 if(confirm("Are you sure want to delete!"))
 {
 console.log($id);
@@ -472,7 +547,41 @@ success:function(data){
 });
 }
 }
-
+function edit_master($id){
+    var id=$id;
+    //console.log($id);
+    $.ajax({
+	type:"post",
+	url:"<?php echo site_url("payslipCtr/master_edit");?>",
+	data:{id:id},
+	dataType:"json",
+	success:function(json){
+	console.log(json);
+	$("#master_edit").modal('show');
+	$("#update_id").val(json[0].id);
+	$("#edit_addtype_error").val(json[0].directed_type);
+	$("#edit_field").val(json[0].field_name);
+	}
+    })
+}
+function update_master_filed(){
+     var filed = $("#edit_field").val();
+     var type=$("#edit_addtype_error").val();
+     var id=$("#update_id").val();
+     console.log(id);
+     console.log(type);
+     console.log(filed);
+     $.ajax({
+	type:"post",
+	url:"<?php echo site_url("payslipCtr/master_update");?>",
+	//data:{user_id:id},
+	data:{id:id,filed:filed,type:type},
+	success:function(){
+	    location.reload()
+	    //window.location.href="inc_dec";
+	}
+    })
+}
 $(document).ready(function() {
 var t = $('#masterTable').DataTable( {
 

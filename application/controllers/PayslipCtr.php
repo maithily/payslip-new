@@ -143,14 +143,13 @@ function inc_dec(){
 	    $this->load->view('header');
 	    
 	    $data['result']=$this->ps_model->get_hra_per();
-		
 	    $data['result1']=$this->ps_model->get_da_per();
+	    //print_r($data);exit;
 	    $this->load->view('inc-ded-master',$data);
         }else{
             redirect('payslipCtr/index');
         }
     }
-
 
     function increment_edit($id){
 	$this->load->view('header');
@@ -1148,6 +1147,15 @@ function master_update_percentage()
     function master_delete()
     {
 	$this->ps_model->master_delete();		   
+    }
+    function master_edit()
+    {
+	$data=$this->ps_model->master_edit();
+	echo json_encode($data);
+    }
+    function master_update()
+    {
+	$data=$this->ps_model->master_update();
     }
 	
     function master_shift()

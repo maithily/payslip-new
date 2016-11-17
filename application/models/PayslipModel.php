@@ -356,13 +356,6 @@ function master_switchery_update($id,$status)
 	$sql="SELECT * FROM holiday_details";
 	return $this->db->query($sql)->result_array();	
     }
-
-
-     
-   
-   
-   
-
        function getIncrement($user,$month){
 	$sql = "SELECT AMOUNT FROM inc_dec_details where INC_DEC_TYPE ='increment' AND EMP_NAME='$user' AND INC_DEC_EFFECTIVE_MONTH='$month'";
 	return $this->db->query($sql,$return_object = TRUE)->result_array();
@@ -386,6 +379,32 @@ function master_switchery_update($id,$status)
 	 $this->db->delete('master_salary');
 	 redirect ('PayslipCtr/inc_dec');
 	
+    }
+        function master_edit()
+    {
+	//echo "ssf";exit;
+	 $edit_id=$this->input->post('id');
+	 //print_r($edit_id);exit;
+	 $this->db->select("*");
+	 $this->db->from('master_salary');
+	 $this->db->where('id', $edit_id);
+	 $edit_data=$this->db->get();
+	 return $edit_data->result_array();
+	 //redirect ('PayslipCtr/inc_dec');
+    }
+    function master_update()
+    {
+	//echo "ssf";exit;
+	 $update_id=$this->input->post('id');
+	 //print_r($update_id);exit;
+	 $data=array(
+		    'field_name'=>$this->input->post('filed'),
+		    'directed_type'=>$this->input->post('type')
+		    );
+	 //print_r($data);exit;
+	 $this->db->where('id',$update_id);
+	 $this->db->update('master_salary',$data);
+	 //redirect ('PayslipCtr/inc_dec');
     }
   
     function master_department()
