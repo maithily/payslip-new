@@ -38,7 +38,7 @@
 			   
 			    <div class="form-group col-md-3">
 				<label>Employee Name: </label><br>
-				<select name="emp_name" id="emp_name" style="width:220px;" class="form-control" data-style="btn-white" >
+				<select name="emp_name" id="emp_name" style="width:220px;" class="form-control" >
 				    <option disabled selected hidden>Select Employee</option>
 				   <?php foreach($this->ps_model->empdetails() as $row){ ?>
 	      
@@ -175,7 +175,7 @@ $date->setTimezone($timezone );?>
 	},
         fields: {
             emp_name: {
-		trigger: 'blur',
+		trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: 'Employee Name is required'
@@ -183,7 +183,7 @@ $date->setTimezone($timezone );?>
                 }
             },
 	    status: {
-		trigger: 'blur',
+		trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: 'Status is required'
@@ -191,7 +191,7 @@ $date->setTimezone($timezone );?>
                 }
             },
 	    dailyDate: {
-		trigger: 'blur',
+		trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: 'Date is required'
@@ -362,7 +362,7 @@ $date->setTimezone($timezone );?>
 	    }
 	});
 	
-	$('#dailyDate').blur(function(){
+	$('#dailyDate').change(function(){
 	    var workinghours =$('.total').val();
 	    //console.log(workinghours);
 	    var currentVal = $(this).val();
