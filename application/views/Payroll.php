@@ -207,13 +207,17 @@
 		</div>
 	</div>
     </div>
+
     <?php foreach($this->ps_model->master_get_hra_per() as $row){  ?>
-			<input type="hidden" name="" value="<?php echo $row['hra_per']?>"  id="HRA1">
+			<input type="hidden" name="" value="<?php echo $row['percentage']?>"  id="HRA1">
 	<?php } ?>
 	
 	<?php foreach($this->ps_model->master_get_da_per() as $row){  ?>
-		<input type="hidden" name="" value="<?php echo $row['da_per']?>"  id="DA1">
+		<input type="hidden" name="" value="<?php echo $row['percentage']?>"  id="DA1">
 	<?php } ?>
+	
+
+
     <div class="col-md-12">
     <div class="col-md-6">
 	<div class="well">
