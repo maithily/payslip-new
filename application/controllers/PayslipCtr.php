@@ -142,14 +142,13 @@ function inc_dec(){
         if($sess){
 	    $this->load->view('header');
 	    
-	    $data['result']=$this->ps_model->get_hra_per();
-	    $data['result1']=$this->ps_model->get_da_per();
-	    //print_r($data);exit;
-	    $this->load->view('inc-ded-master',$data);
+	   
+	    $this->load->view('inc-ded-master');
         }else{
             redirect('payslipCtr/index');
         }
     }
+
 
     function increment_edit($id){
 	$this->load->view('header');
@@ -492,12 +491,13 @@ $res = 1;
 		foreach($data as $row)
 		{
 			?>
-			<tr>
-			        <td><?php echo $row['EMP_ID'];?></td>
+			<tr>    
 				<td><?php echo $row['EMP_NAME'];?></td>
 				<td><?php echo $row['EMP_EMAIL'];?></td>
-				<td><?php echo $row['EMP_DEPARTMENT'];?></td>
-				<td><?php echo $row['SALARY_PAID'];?></td>
+                                <td><?php echo $row['EMP_ID'];?></td>
+				<td><?php echo $row['PAYSLIP_NO'];?></td>
+                                <td><?php echo $row['EMP_DEPARTMENT'];?></td>
+				<td><?php echo $row['MONTH_YEAR'];?></td>
 				<td><?php echo $row['TOTAL_WORKING_DAYS'];?></td>
 				<td><?php echo $row['WORKED_DAYS'];?></td>
 				<td><?php echo $row['BASIC_SALARY'];?></td>
@@ -511,8 +511,12 @@ $res = 1;
 				<td><?php echo $row['ADVANCE_SALARY'];?></td>
 				<td><?php echo $row['OTHER_DEDUCTIONS'];?></td>
 				<td><?php echo $row['GROSS_DEDUCTIONS'];?></td>
-				<td><?php echo $row['NET_AMOUNT'];?></td>
-		<tr>
+				<td><?php echo $row['REMARKS'];?></td>
+                                <td><?php echo $row['CR_DATE'];?></td>
+                                <td><?php echo $row['UPDATED_DATE'];?></td>
+
+
+		</tr>
 	<?php
 		}
 		
@@ -730,10 +734,7 @@ $res = 1;
 	    redirect('PayslipCtr/index');
 	}
     }
-    function master_department_delete(){
-	    
-	$this->ps_model->master_department_delete();
-    }
+
     
     public function logout()
     {
@@ -1143,19 +1144,20 @@ function master_update_percentage()
 		//print_r($status);
 		$this->ps_model->master_switchery_update($id,$status);
 	}
-	
-    function master_delete()
-    {
-	$this->ps_model->master_delete();		   
-    }
     function master_edit()
     {
 	$data=$this->ps_model->master_edit();
 	echo json_encode($data);
     }
+
     function master_update()
     {
 	$data=$this->ps_model->master_update();
+    }
+	
+    function master_delete()
+    {
+	$this->ps_model->master_delete();		   
     }
 	
     function master_shift()
@@ -1170,11 +1172,63 @@ function master_update_percentage()
 	$this->ps_model->master_department();
     }
 	
-    function master_department_view()
+  function master_department_view()
     {
-	$this->load->view('header');		 
-	$this->load->view('master_department');		   
+ $resData['getVal'] = $this->ps_model->master_department();
+ $this->load->view('header');   
+ $this->load->view('master_department',$resData);     
     }
+
+function master_department_delete(){
+     
+ $this->ps_model->master_department_delete();
+ 
+    }
+
+ function master_department_edit(){
+ 
+ $res['getData']=$this->ps_model->master_department_edit();  
+
+ echo json_encode($res);
+    }
+ 
+     function master_department_update(){
+  
+      $edit_id=$this->input->post('id');
+      $this->ps_model->master_department_update($edit_id);
+     }
+     
+     
+     function master_designation()
+    {
+	$this->ps_model->master_designation();
+    }
+	
+    function master_designation_view()
+    {
+	$resData['getVal'] = $this->ps_model->master_designation();
+	$this->load->view('header');   
+	$this->load->view('master_designation',$resData);     
+    }
+
+    function master_designation_delete(){
+     
+	$this->ps_model->master_designation_delete();
+    }
+
+    function master_designation_edit(){
+    
+	$res['getData']=$this->ps_model->master_designation_edit();  
+   
+	echo json_encode($res);
+    }
+ 
+    function master_designation_update(){
+  
+      $edit_id=$this->input->post('id');
+      $this->ps_model->master_designation_update($edit_id);
+     }
+
     function master_insert_shift()
     {
 	$this->ps_model->master_insert_shift();
