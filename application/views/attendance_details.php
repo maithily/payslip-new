@@ -117,7 +117,7 @@
    $('#aTable').DataTable();
 </script>
 <script>
-    $('.selectpicker').selectpicker();
+    //$('.selectpicker').selectpicker();
 $(document).ready(function(){
 $("#search_attendance").click(function(){
 var month=$("#attendancemonth").val();
@@ -130,9 +130,9 @@ url:"<?php echo site_url() ?>" + "PayslipCtr/attendance_monthwise",
 data:{month:month,year:year,name:name},
 success :function(data) {
 
-$("#attendancename").val('').selectpicker('refresh');
-$("#attendanceyear").val('').selectpicker('refresh');
-$("#attendancemonth").val('').selectpicker('refresh');
+$("#attendancename").val('');
+$("#attendanceyear").val('');
+$("#attendancemonth").val('');
 $('#abody').html(data);
 }
 });
