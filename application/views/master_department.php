@@ -26,7 +26,7 @@
 </div>
 <h4 class="panel-title">Settings for department</h4>
 </div>
-<div class="panel-body">
+<div class="panel-body" id="view">
 	
 <div class="well">	
 	
@@ -40,8 +40,8 @@
 						 <div class="form-group">
 						   <label class="col-md-5 control-label">Department :</label>
 						   <div class="col-md-7">
-							   <input type="text" class="form-control textfield1" style="text-transform: capitalize;" name="department" placeholder="Add Department" />
-							   
+							   <input type="text" class="form-control textfield1" style="text-transform: capitalize;" name="department" id="department" placeholder="Add Department" />
+							   <input type="hidden" name="id" id="row_id">
 						   </div>
 						    
 						</div>
@@ -50,7 +50,8 @@
 				<div class="col-md-4">
 						 <div class="form-group">
 						   <div class="col-md-4">
-						 <button type="submit" name="add_dept" value="add" class="btn btn-sm btn-success form-control">Add</button>
+						 <button type="submit" name="add_dept" id="Add" value="add" class="btn btn-sm btn-success form-control">Add</button>
+						 <button type="button" id="update" value="" onclick="Update_fun()" class="btn btn-sm btn-primary form-control">Update</button>
 						   </div>
 						    
 						</div>
@@ -79,16 +80,15 @@
 			<thead>
 				<tr>
 					
-					
-                                        <th>Department Name</th>
+				    <th>Department Name</th>
 					<th>Created date/time</th>
 					<th>Action</th>
 					
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach($this->ps_model->master_department() as $row){ ?>
-				<tr class="oddClass">
+				<?php foreach($getVal as $row){ ?>
+				<tr class="oddClass" id="<?php echo $row['id']; ?>" >
 											    
 						<td>
 							<?php echo $row['department'];?>
@@ -98,13 +98,16 @@
 						</td>
 						<td>
 							<?php $id= $row['id']; ?>
+							<button type="button" id="editbutton" onclick="Edit(<?php  echo $row['id'] ?>)" name="" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></button>
+						
+							<?php $id= $row['id']; ?>
 							<button type="button" id="deletebutton" onclick="delet1( <?php  echo $row['id'] ?>, $(this))" name="" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>
 						</td>
 						
 				</tr>
 				<?php } ?>
 			</tbody>
-			</table>
+		</table>
 	</div>
 </div>
 	<br>
@@ -157,7 +160,47 @@ var $row = $this.parents('.oddClass');
 }
 }
 
+function Edit($id) {
+	$("#Add").hide();
+	$("#update").show();
+	//alert();
+	console.log($id);
+
+var id=$id;
+$.ajax({
+url:'<?php echo site_url('payslipCtr/master_department_edit');?>',
+type:"post",
+data:{id:id},
+dataType:'json',
+success:function(json){
+	
+$("#department").val(json.getData[0].department);
+$("#row_id").val(json.getData[0].id);
+},
+});	
+}
+
+function Update_fun() {
+	//alert(id);
+	var id=$("#row_id").val();
+	//console.log($id);
+	var dept=$("#department").val();
+	$.ajax({
+	url:'<?php echo site_url('payslipCtr/master_department_update');?>',
+	type:"post",
+	data:{id:id,dept:dept},
+	success:function(html){
+	//$("#view").html(html);
+	window.location.reload();
+	},
+	});	
+
+}
+
     $(document).ready(function() {
+        $("#Add").show();
+	$("#update").hide();
+	
     $('#forms').bootstrapValidator({
             feedbackIcons: {
 	    valid: 'glyphicon glyphicon-ok',
