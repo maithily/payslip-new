@@ -249,6 +249,7 @@
 					    <ul class="sub-menu">
 					   <li><a href="<?php echo site_url('PayslipCtr/inc_dec')?>">Inclusion deduction</a></li>
 					    <li><a href="<?php echo site_url('PayslipCtr/master_department_view')?>">Department</a></li>
+					    <li><a href="<?php echo site_url('PayslipCtr/master_designation_view')?>">Designation</a></li>
 						<li><a href="<?php echo site_url('PayslipCtr/master_shift')?>">shift setting master</a></li>
 
 						<li><a href="<?php echo site_url('PayslipCtr/holiday')?>">Holiday Master</a></li>
