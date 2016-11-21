@@ -43,6 +43,7 @@
 <label class="col-md-3 control-label">Title :</label>
 <div class="col-md-9">
 <select class="form-control selectpicker" name="emp_title">
+
 <option value="">select an option</option>
 <option value="Mr." <?php if ($result[0]['EMP_TITLE'] === 'Mr.') {echo ' selected="selected"' ;} ?> >Mr.</option>
 <option value="Ms." <?php if ($result[0]['EMP_TITLE'] === 'Ms.') {echo ' selected="selected"';} ?> >Ms.</option>
@@ -99,13 +100,13 @@
 <label class="col-md-3 control-label">Designation :</label>
 <div class="col-md-9">
 <select class="form-control selectpicker" name="emp_designation">
-		<option value="" selected disabled hidden>Select an option</option>
-		<option value="Trainee Developer" <?php if ($result[0]['EMP_DESIGNATION'] === 'Trainee Developer') {echo ' selected="selected"' ;} ?> >Trainee developer  </option>
-		<option value="Junior Developer" <?php if ($result[0]['EMP_DESIGNATION'] === 'Junior Developer') {echo ' selected="selected"' ;} ?> >Junior Developer </option>
-		<option value="Programmer Analyst" <?php if ($result[0]['EMP_DESIGNATION'] === 'Programmer Analyst') {echo ' selected="selected"' ;} ?> >Programmer Analyst </option>														
-		<option value="Senior Consultant" <?php if ($result[0]['EMP_DESIGNATION'] === 'Senior Consultant') {echo ' selected="selected"' ;} ?> >Senior Consultant </option>	
-<option value="Data Entry Operator" <?php if ($result[0]['EMP_DESIGNATION'] === 'Data Entry Operator') {echo ' selected="selected"' ;} ?>>Data Entry Operator</option>
-						<option value="HR" <?php if ($result[0]['EMP_DESIGNATION'] === 'HR') {echo ' selected="selected"' ;} ?>>HR</option>
+		<option value="Select an option" selected disabled hidden>Select an option</option>
+
+<?php foreach($this->ps_model->master_designation() as $row){ ?>
+
+         <option value="<?php echo $row['designation'];?>" <?php if($result[0]['EMP_DESIGNATION'] === $row['designation']){echo ' selected="selected"' ;} ?> >    <?php echo $row['designation'];?>    </option>
+
+<?php } ?>
 			
 </select>
 </div>
@@ -127,9 +128,12 @@
 <div class="col-md-9">
 <select class="form-control selectpicker" name="emp_department">
 <option value="Select an option" selected disabled hidden>Select an option</option>
-<option value="IT Department" <?php if ($result[0]['EMP_DEPARTMENT'] === 'IT Department') {echo ' selected="selected"' ;} ?>>IT Department</option>
-<option value="HR Department" <?php if ($result[0]['EMP_DEPARTMENT'] === 'HR Department') {echo ' selected="selected"' ;} ?>>HR Department</option>
-<option value="Data Entry" <?php if ($result[0]['EMP_DEPARTMENT'] === 'Data Entry') {echo ' selected="selected"' ;} ?>>Data Entry</option>
+
+<?php foreach($this->ps_model->master_department() as $row){ ?>
+
+         <option value="<?php echo $row['department'];?>" <?php if($result[0]['EMP_DEPARTMENT'] === $row['department']){echo ' selected="selected"' ;} ?> >    <?php echo $row['department'];?>    </option>
+
+<?php } ?>								
 
 </select>
 </div>
@@ -225,10 +229,12 @@
 <div class="col-md-9">
 <select class="form-control selectpicker" name="emp_country">
 
-<option value="India" <?php if ($result[0]['EMP_COUNTRY'] === 'india') {echo ' selected="selected"' ;} ?>>India</option>
-<option value="Dubai" <?php if ($result[0]['EMP_COUNTRY'] === 'dubai') {echo ' selected="selected"' ;} ?>>Dubai</option>
+<option value="India" <?php if ($result[0]['EMP_COUNTRY'] === 'India') {echo ' selected="selected"' ;} ?>>India</option>
+<option value="Dubai" <?php if ($result[0]['EMP_COUNTRY'] === 'Dubai') {echo ' selected="selected"' ;} ?>>Dubai</option>
+<option value="Canada" <?php if ($result[0]['EMP_COUNTRY'] === 'Canada') {echo ' selected="selected"' ;} ?>>Canada</option>
+<option value="France" <?php if ($result[0]['EMP_COUNTRY'] === 'France') {echo ' selected="selected"' ;} ?>>France</option>
 
-	
+
 </select>
 </div>
 </div>
