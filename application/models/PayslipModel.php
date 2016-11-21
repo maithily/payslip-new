@@ -192,15 +192,6 @@ function check_field_availablitly()
 	   return $this->db->query($sql)->result_array();
 	}
 
-
-   function master_department_delete()
-    {
-	$del_id=$this->input->post('id');
-	$this->db->where('id', $del_id);	
-	$this->db->delete('master_department');
-	redirect ('payslipCtr/master_department_view');
-	
-    }
      function get_payslip_no()
     {
 	$sql="SELECT * FROM payslip_no";
@@ -238,14 +229,14 @@ function check_field_availablitly()
     }
  function master_get_hra_per()
 	{
-		$sql="SELECT * FROM  master_salary where directed_type='inclusion' and field_name='HRA' ";
+		$sql="SELECT * FROM  master_salary where field_name='HRA' ";
 		$result= $this->db->query($sql)->result_array();
 		return $result;
 	}
 	
 	function master_get_da_per()
 	{
-		$sql="SELECT * FROM  master_salary where directed_type='inclusion' and field_name='DA' ";
+		$sql="SELECT * FROM  master_salary where field_name='DA' ";
 		$result= $this->db->query($sql)->result_array();
 		//print_r($result[0]['column_name']); exit;
 	     return $result;
@@ -255,8 +246,7 @@ function check_field_availablitly()
    {
 	
 	$data = array(
-		'hra_per' => $this->input->post('hra_per'),
-		'da_per' => $this->input->post('da_per'),
+		'percentage' => $this->input->post('percentage'),
 	         'field_name' => $this->input->post('field_name'),
 		 'flag' => 'activate',
 		'directed_type' => $this->input->post('add_type')
@@ -356,6 +346,13 @@ function master_switchery_update($id,$status)
 	$sql="SELECT * FROM holiday_details";
 	return $this->db->query($sql)->result_array();	
     }
+
+
+     
+   
+   
+   
+
        function getIncrement($user,$month){
 	$sql = "SELECT AMOUNT FROM inc_dec_details where INC_DEC_TYPE ='increment' AND EMP_NAME='$user' AND INC_DEC_EFFECTIVE_MONTH='$month'";
 	return $this->db->query($sql,$return_object = TRUE)->result_array();
@@ -379,32 +376,6 @@ function master_switchery_update($id,$status)
 	 $this->db->delete('master_salary');
 	 redirect ('PayslipCtr/inc_dec');
 	
-    }
-        function master_edit()
-    {
-	//echo "ssf";exit;
-	 $edit_id=$this->input->post('id');
-	 //print_r($edit_id);exit;
-	 $this->db->select("*");
-	 $this->db->from('master_salary');
-	 $this->db->where('id', $edit_id);
-	 $edit_data=$this->db->get();
-	 return $edit_data->result_array();
-	 //redirect ('PayslipCtr/inc_dec');
-    }
-    function master_update()
-    {
-	//echo "ssf";exit;
-	 $update_id=$this->input->post('id');
-	 //print_r($update_id);exit;
-	 $data=array(
-		    'field_name'=>$this->input->post('filed'),
-		    'directed_type'=>$this->input->post('type')
-		    );
-	 //print_r($data);exit;
-	 $this->db->where('id',$update_id);
-	 $this->db->update('master_salary',$data);
-	 //redirect ('PayslipCtr/inc_dec');
     }
   
     function master_department()
@@ -1982,7 +1953,7 @@ $da=0;
     function fetch_data($sysid){
 	$sql="SELECT * FROM emp_details WHERE EMP_ID='$sysid'";
 	return $this->db->query($sql)->result_array();
-	//print_r($ss);exit;
+	
     }
     function emp_details(){
 	$this->db->select('EMP_ID,EMP_NAME');
@@ -2006,6 +1977,116 @@ $da=0;
 	$sql="select * from chng_cmpy_details";
 	return $this->db->query($sql)->result_array();
       }
+ function master_department_delete()
+    {
+ $del_id=$this->input->post('id');
+ $this->db->where('id', $del_id); 
+ $this->db->delete('master_department');
+ redirect ('payslipCtr/master_department_view');
+ }
+ 
+    function master_department_edit(){
+  
+ $edit_id=$this->input->post('id');
+ $this->db->select('*');
+ $this->db->from('master_department');
+ $this->db->where('id',$edit_id);
+ $masterEdit=$this->db->get();
+
+ return $masterEdit->result_array();
+
+ }
+ 
+    function master_department_update($edit_id){
+ 
+ $data=array(
+     'department'=> $this->input->post('dept')
+ );
+
+ $this->db->where('id',$edit_id);
+ $this->db->update('master_department',$data);
+ 
+ }
+  function master_designation()
+    {
+    
+    if($this->input->post('add_desig')=='add')
+       {
+	    //print_r($_POST);exit;
+	    $desig=$this->input->post('designation');
+	    $sql="insert into master_designation (designation)values ('$desig')";
+	    $data=$this->db->query($sql);
+		redirect(base_url('PayslipCtr/master_designation_view'));
+		
+       }
+	   
+    $sql="select * from master_designation";
+    return $this->db->query($sql)->result_array();
+  }
+  
+  
+  function master_designation_delete()
+    {
+ $del_id=$this->input->post('id');
+ $this->db->where('id', $del_id); 
+ $this->db->delete('master_designation');
+ redirect ('payslipCtr/master_designation_view');
+ }
+ 
+    function master_designation_edit(){
+  
+ $edit_id=$this->input->post('id');
+ $this->db->select('*');
+ $this->db->from('master_designation');
+ $this->db->where('id',$edit_id);
+ $masterEdit=$this->db->get();
+
+ return $masterEdit->result_array();
+
+ }
+ 
+    function master_designation_update($edit_id){
+ 
+ $data=array(
+     'designation'=> $this->input->post('desig')
+ );
+
+ $this->db->where('id',$edit_id);
+ $this->db->update('master_designation',$data);
+ 
+ }
+ 
+ 
+ 
+
+function master_edit()
+    {
+	
+	 $edit_id=$this->input->post('id');
+	
+	 $this->db->select("*");
+	 $this->db->from('master_salary');
+	 $this->db->where('id', $edit_id);
+	 $edit_data=$this->db->get();
+	 return $edit_data->result_array();
+	
+    }
+    function master_update()
+    {
+	
+	 $update_id=$this->input->post('id');
+	
+	 $data=array(
+		    'field_name'=>$this->input->post('filed'),
+		    'directed_type'=>$this->input->post('type'),
+                     'percentage'=>$this->input->post('percentage'),
+
+		    );
+	
+	 $this->db->where('id',$update_id);
+	 $this->db->update('master_salary',$data);
+	 
+    }
     
     
 
