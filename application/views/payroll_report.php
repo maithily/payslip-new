@@ -155,7 +155,7 @@
 
 		columns: [
 		{ data: 'ID',"orderable": true},
-                { data: 'ID',"orderable": true},
+                { data: 'ID'},
 		{ data: 'EMP_NAME'},
                 { data: 'EMP_EMAIL'},
                 { data: 'EMP_ID'},
@@ -218,6 +218,7 @@
 		} ).draw();
    
 });
+
 function multiple_mail_send() {
     var names=[];
     var email=[];
@@ -248,6 +249,7 @@ function multiple_mail_send() {
 	$('body').removeClass('loading').loader('hide');
 	//alert('Mail Send Sucessfully');
     }
+
 </script>
 
 
@@ -282,10 +284,6 @@ $('#sbody').html(data);
 </script>
 
 <script>
-//$('#empTable input').on('change', function() {
-//   alert($('input[name=emp_gender]:checked', '#empTable').val()); 
-//});
-
 
 $("#sbody").click(function(){
 $('button').prop('disabled', false);
@@ -305,7 +303,7 @@ window.location.href = "<?php echo base_url();?>payslipCtr/payroll_edit/" + id ;
 
 $(document).ready(function() {
 $('#deletebutton').click(function () {
-var names=[];
+     var names=[];
     //var email=[];
     $('tr.selected').each(function(){
     var datas=$(this).find('td:eq(0)').text();
