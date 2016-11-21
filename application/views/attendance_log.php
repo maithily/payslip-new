@@ -50,7 +50,7 @@
                                                     </div>
                                                     <div class="col-sm-3">
 							 
-							<select id="selectpicker6" name="empname" onchange="names()" class="form-control selectpicker">
+							<select id="selectpicker6" name="empname" onchange="names()" class="form-control">
 								  <option value="">Select Employee</option>
                                                         <?php foreach($rawdata as $row) { ?>
                                                       
@@ -95,7 +95,7 @@
                                                         <option value="04" >APR</option>
                                                         <option value="05" >MAY</option>
                                                         <option value="06" >JUN</option>
-                                                        <option value="07" >JLY</option>
+                                                        <option value="07" >JUL</option>
                                                         <option value="08" >AUG</option>
                                                         <option value="09" >SEP</option>
                                                         <option value="10" >OCT</option>
@@ -124,12 +124,6 @@
                                                     </div>
 											</div>
 
-						    
-						    
-						    
-						    
-						    
-						    
                                                 </div>
                                                 
                                                  <div class="form-group">
@@ -149,7 +143,7 @@
 						      
                                                         <div class="col-sm-5" >
                                                         <select id="selectpicker2"  name="year" class="form-control selectpicker" onchange="year_fun($(this))">
-                                                      <option value="" >Select Year</option>
+                                                      <option value="">Select Year</option>
                                                         <option value="2016" >2016</option>
                                                         <option value="2017" >2017</option>
                                                          <option value="2018" >2018</option>
@@ -182,14 +176,6 @@
 							 </div>
 							</div>
 
-						    
-						    
-						    
-						    
-						    
-						    
-						    
-						    
                                                 </div>
                                                  
                                                   <div class="form-group">
@@ -375,10 +361,10 @@
 			{style: 'btn-white',});
                 $('#selectpicker5').selectpicker(
 			{style: 'btn-white',});
-                $('#selectpicker6').selectpicker(
-			{style: 'btn-white',});
+                //$('#selectpicker6').selectpicker(
+			//{style: 'btn-white',});
                 
-            });
+                });
 			
         </script>
 <script>
