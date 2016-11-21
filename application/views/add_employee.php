@@ -102,13 +102,10 @@
 			<label class="col-md-3 control-label">Designation :</label>
 			<div class="col-md-9">
 				<select class="form-control selectpicker" name="emp_designation">
-						<option value="" selected disabled hidden>Select An Option</option>
-						<option value="Trainee Developer">Trainee Developer</option>
-						<option value="Junior Developer">Junior Developer</option>
-						<option value="Programmer Analyst">Programmer Analyst</option>														
-						<option value="Senior Consultant">Senior Consultant</option>	
-                                                <option value="Data Entry Operator">Data Entry Operator</option>
-						<option value="HR">HR</option>
+					<option value="">Select an option</option>
+						<?php foreach($this->ps_model->master_designation() as $row){ ?>
+						<option value="<?php echo $row['designation'];?>"><?php echo $row['designation'];?></option>
+						<?php } ?>	
 						
 				</select>
 			</div>
@@ -129,8 +126,6 @@
 			<div class="col-md-9">
 				<select class="form-control selectpicker" name="emp_department">
 						<option value="">Select an option</option>
-						<option value="IT Department">IT Department</option>
-						<option value="HR Department">HR Department</option>
 						<?php foreach($this->ps_model->master_department() as $row){ ?>
 						<option value="<?php echo $row['department'];?>"><?php echo $row['department'];?></option>
 						<?php } ?>								
