@@ -39,10 +39,10 @@
 				<div class="col-md-12">
 					
 					<div class="row">
-						<div class="col-md-4">
+						<div class="col-md-5">
 						   <div class="form-group">
-							   <label class="col-md-3 control-label">Name :</label>
-							   <div class="col-md-9">
+							   <label class="col-md-4 control-label">Name :</label>
+							   <div class="col-md-6">
 								  <select class="form-control selectpicker" name="field_name" id="field">
 											 <option value="">Select</option>
 											 <option value="HRA">HRA</option>
@@ -54,15 +54,15 @@
 											 <option value="Advance">Advance salary if paid</option>
 											 <option value="Deduction">Other Deduction</option>
 								   </select>
-								   <span id="error" style="color:#f00"> Field already exits </span>
+								   <span id="error" style="color:#f00"> Field already exist </span>
 							   </div>
 							   </div>
 						   </div>
 				
-						<div class="col-md-4">
+						<div class="col-md-5">
 						   <div class="form-group">
-							   <label class="col-md-5 control-label">Add type :</label>
-							   <div class="col-md-7">
+							   <label class="col-md-4 control-label">Add type :</label>
+							   <div class="col-md-6">
 								   <select class="form-control selectpicker" name="add_type" id="addtype_error">
                                                                         <option value="">Select</option>
                                                                         <option value="Inclusion">Inclusion</option>
@@ -71,9 +71,9 @@
 							   </div>
 						   </div>
 					   </div>
-						<div class="col-md-4">
+						<div class="col-md-2">
 						   <div class="form-group">
-						  <div class="col-md-4">
+						  <div class="col-md-12">
 							  <button type="submit" class="btn btn-sm btn-success form-control" id="add_button">ADD</button>
 						  </div>
 						</div>
@@ -82,32 +82,32 @@
 					
 				   </div><br>
 					<div class="row" id="HRA">
-						<div class="col-md-4">
+						<div class="col-md-5">
 						   <div class="form-group">
-							   <label class="col-md-5 control-label">HRA in per:</label>
-							    <div class="col-md-7">
+							   <label class="col-md-4 control-label">HRA in percentage:</label>
+							    <div class="col-md-6">
 									<div class="input-group">
-				                       <span class="input-group-addon">%</span>
-								  <input type="text" value="" id="hra_error" class="form-control"  name="hra_per">
+				                                        <span class="input-group-addon">%</span>
+						<input type="text" value="" id="hra_error" class="form-control"  name="percentage">
 									</div>
 							   </div>
 							   </div>
 						   </div>
-						 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Report</button>
+						 
 					</div>
 					<div class="row" id="DA">	
-						<div class="col-md-4">
+						<div class="col-md-5">
 						   <div class="form-group">
-							   <label class="col-md-5 control-label">DA in per:</label>
-							   <div class="col-md-7">
+							   <label class="col-md-4 control-label">DA in percentage:</label>
+							   <div class="col-md-6">
 								  <div class="input-group">
-									        <span class="input-group-addon">%</span>       
-								  <input type="text"  value="" id="da_error"  class="form-control" name="da_per">
+					                               <span class="input-group-addon">%</span>       
+						      <input type="text"  value="" id="da_error"  class="form-control" name="percentage">
 								  </div>
 							   </div>
 							   </div>
 						   </div>
-							<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Report</button>
+							
 					</div>
 					
 					
@@ -131,7 +131,7 @@
 			<div class="row">
 			    	    
 
-				<form action="<?php echo base_url('payslipCtr/master_update_percentage');?>" method="post">
+				<!--<form action="<?php echo base_url('payslipCtr/master_update_percentage');?>" method="post">
 				<div class="col-md-12">
 						<div class="col-md-offset-1 col-md-4">
 						   <div class="form-group">
@@ -165,7 +165,7 @@
 							</div>
 						</div>
 				</div>
-				</form>
+				</form>-->
 			</div>
 		 </div>
 		<div class="modal-footer">
@@ -190,10 +190,10 @@
 					<!--<th>HR Percentage</th>
 					<th>DA Percentage</th>-->
 					<th>Type</th>
-					<th>Created date/time</th>
-				
+					<th>Percentage</th>
 					<th>Active / Deactive</th>
-					<th>Action</th>
+                                        <th>Action</th>
+                                        <th>Created date/time</th>
 				</tr>
 			</thead>
 			<tbody id="master_table">
@@ -205,19 +205,15 @@
                                     <td>
                                         <?php echo $row['field_name'];?>
                                     </td>
-				<!--     <td>
-                                        <?php echo $row['hra_per'];?>
-                                    </td>
+				  
 				     <td>
-                                        <?php echo $row['da_per'];?>
-                                    </td>-->
-                                    <td>
                                         <?php echo $row['directed_type'];?>
                                     </td>
                                      <td>
-                                        <?php echo $row['cr_date']; ?>
-				    </td>
-				<td>
+                                        <?php echo $row['percentage'];?>
+                                    </td>
+                                     
+				    <td>
 					<input type="checkbox" name="check" value="<?php echo $row['flag'] ;?>" <?php if($row['flag']=='activate'){ echo 'checked';}?>  id="switchery"   class="lcs_check lcs_tt1" />
 				</td>
 				    <td>
@@ -225,6 +221,9 @@
 					<button type="button" name="delete" id="delete"  value="delete" class="btn btn-xs btn-danger" onclick="delete_master( <?php  echo $row['id'] ?>, $(this) )"> <i class="fa fa-trash-o"></i></button>
 
                                     </td>
+                                     <td>
+                                        <?php echo $row['cr_date']; ?>
+				    </td>
 				</tr>
 				<?php } ?>
 			</tbody>
@@ -246,8 +245,8 @@
 			<!--<form action="<?php echo base_url('payslipCtr/');?>" method="post">-->
 			<div class="col-md-4">
 			   <div class="form-group">
-				   <label class="col-md-4 control-label">Name :</label>
-				   <div class="col-md-8">
+				   <label class="col-md-5 control-label">Name :</label>
+				   <div class="col-md-7">
 					  <select class="form-control selectpicker" name="field_name" id="edit_field">
 								 <option value="">Select</option>
 								 <option value="HRA">HRA</option>
@@ -260,8 +259,17 @@
 								 <option value="Deduction">Other Deduction</option>
 					   </select>
 				   </div>
-				   </div>
+				</div>
+			   </div><!--<form action="<?php echo base_url('payslipCtr/');?>" method="post">-->
+			<div class="col-md-4">
+			   <div class="form-group">
+				   <label class="col-md-5 control-label">Percentage :</label>
+				    <div class="col-md-7">
+					 <input type="text" class="form-control" value="" id="percentage">
+				    </div>
+				</div>
 			   </div>
+			
 			<input type="hidden" id="update_id" value="" name="id">
 			<div class="col-md-4">
 			   <div class="form-group">
@@ -275,20 +283,23 @@
 				   </div>
 			   </div>
 		   </div>
-			<div class="col-md-4">
+		    </div>
+		    <br>
+			<div class="row">
+			   
+			<div class="col-md-6">
 			   <div class="form-group">
-			  <div class="col-md-4">
+			  <div class="col-md-3 col-md-offset-12">
+			   
 				  <button type="submit" class="btn btn-sm btn-warning form-control" onclick="update_master_filed()" id="update_button">Update</button>
 			  </div>
 			</div>
 		   </div>
-<!--		</form>
--->	   </div><br>
+			</div>
+   </div>
 		 
 		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		</div>
+		
 	      </div>
 	    </div>
 	  </div>
@@ -347,7 +358,7 @@ message: 'The employee id is required and cannot be empty'
 
 remote:
 {
-	 trigger: 'blur',
+	 trigger: 'change',
 	url: '<?=site_url('payslipCtr/check_field_availablitly')?>',
 	type: 'POST',
 	data: {type: 'field_name'},
@@ -560,12 +571,14 @@ function edit_master($id){
 	$("#master_edit").modal('show');
 	$("#update_id").val(json[0].id);
 	$("#edit_addtype_error").val(json[0].directed_type);
+	$("#percentage").val(json[0].percentage);
 	$("#edit_field").val(json[0].field_name);
 	}
     })
 }
 function update_master_filed(){
      var filed = $("#edit_field").val();
+     var percentage = $("#percentage").val();
      var type=$("#edit_addtype_error").val();
      var id=$("#update_id").val();
      console.log(id);
@@ -575,7 +588,7 @@ function update_master_filed(){
 	type:"post",
 	url:"<?php echo site_url("payslipCtr/master_update");?>",
 	//data:{user_id:id},
-	data:{id:id,filed:filed,type:type},
+	data:{id:id,filed:filed,type:type,percentage:percentage},
 	success:function(){
 	    location.reload()
 	    //window.location.href="inc_dec";
