@@ -455,7 +455,7 @@
 	function createslip_pdf(){
 	    //alert('createslip pdf in');
 	    var emp_name=$("#emp_name").val();
-           var month=$("#month_year").val();
+	    var month=$("#month_year").val();
 	    console.log(month);
 	    
 	    var url="<?php echo base_url('PayslipCtr/createslip_pdf/');?>"+emp_name+'/'+month;
