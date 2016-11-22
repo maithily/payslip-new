@@ -58,8 +58,8 @@ class PayslipModel extends CI_Model {
 	    'EMP_NAME'=>$this->input->post('emp_name'),
 	    'EMP_ID'=>$this->input->post('emp_id'),
 	    'MONTH_YEAR'=>$date,
-	    'MONTH'=>$data[0],
-	    'YEAR'=>$data[1],
+	    'MONTH'=>$data[1],
+	    'YEAR'=>$data[2],
              'EMP_EMAIL'=>$this->input->post('emp_email'),
 	    'BASIC_SALARY'=>$this->input->post('basic_salary'),
 	    'INCENTIVE'=>$this->input->post('incentive'),
@@ -116,8 +116,8 @@ class PayslipModel extends CI_Model {
 	    'EMP_NAME'=>$this->input->post('emp_name'),
 	    'EMP_ID'=>$this->input->post('emp_id'),
 	    'MONTH_YEAR'=>$date,
-	    'MONTH'=>$data[0],
-	    'YEAR'=>$data[1],
+	    'MONTH'=>$data[1],
+	    'YEAR'=>$data[2],
            'EMP_EMAIL'=>$this->input->post('emp_email'),
 	    'BASIC_SALARY'=>$this->input->post('basic_salary'),
 	    'INCENTIVE'=>$this->input->post('incentive'),
@@ -1721,6 +1721,7 @@ function master_update_percentage()
       $pay_unique_no=$pay_no;
       $date=$this->input->post('month_year');
       $data=explode("-",$date);
+      //print_r($data);exit;
 $in=$this->input->post('Incentive');
 if($in=='')
 {
@@ -1766,7 +1767,7 @@ $da=0;
 
     $payroll=array(
 	'EMP_NAME'=>$this->input->post('emp_name'),
-         'EMP_ID'=>$this->input->post('emp_id'),
+        'EMP_ID'=>$this->input->post('emp_id'),
 	'MONTH_YEAR'=>$date,
 	'MONTH'=>$data[1],
 	'YEAR'=>$data[2],
@@ -1791,7 +1792,9 @@ $da=0;
 	'REMARKS'=>$this->input->post('remarks')
 	
     );
-   
+    //echo "<pre>";
+    //print_r($payroll);exit;
+    //
     $this->db->insert('payroll_details',$payroll);
               $pay_num=substr($pay_unique_no,7);
 		$char="CTS/PS/";
