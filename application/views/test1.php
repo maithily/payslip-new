@@ -25,7 +25,7 @@
                                         Ellaipillaichavady,<br>
                                         Puducherry - 605005. <br>
                                     </label>
-                                <p style="font-size: 20px;">Pay Slip for the Period of October 2016</p>
+                                <p style="font-size: 20px;">Pay Slip for the Period of  <?php echo $datas1[0]['MONTH']?>-<?php echo $datas1[0]['YEAR']?></p>
                             </p>
                         </th>
                         <th style="width: 16%">
