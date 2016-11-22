@@ -36,19 +36,18 @@ class PayslipCtr extends CI_Controller {
      $this->ps_model->attendance_del($id);
      }
 
-      function del1()
-	{
-	    
-	    $id=$this->input->post('id');
-	    for ($i = 0; $i < count($id); $i++) {
-	    $data=$this->ps_model->delete_row1($id[$i]);
-	    }
+    function del1()
+    {
+	$id=$this->input->post('id');
+	for ($i = 0; $i < count($id); $i++) {
+	$data=$this->ps_model->delete_row1($id[$i]);
 	}
+    }
 
-
-     function pdfattachment_Email($name){
+    function pdfattachment_Email($name){
       $getslip['datas']=$this->ps_model->getfrom_empdetail($name);
        $getslip['datas1']=$this->ps_model->getfrom_salarydetail($name);
+       //print_r($getslip['datas1']);exit;
         return $dataa=$this->load->view('test1',$getslip,true);
     }
     function check(){
@@ -858,10 +857,9 @@ $res = 1;
 	
 	$getslip['datas']=$this->ps_model->getfrom_empdetail($name);
 	$getslip['datas1']=$this->ps_model->getfrom_salaryMail($name);
-	
+	//print_r($getslip['datas1']);exit;
 	return $dataa=$this->load->view('test1',$getslip,true);
     }
-
 
       function createslip_pdf($name,$month){
       
