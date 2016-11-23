@@ -55,11 +55,8 @@
 			    <div class="form-group col-md-3">
 				<label>Date : </label> 
 				<div class="input-group date">
-<?php
-$timezone = new DateTimeZone("Asia/Kolkata" );
-$date = new DateTime();
-$date->setTimezone($timezone );?>
-				    <input type='text' id="dailyDate" name="dailyDate" class="form-control datetimepicker1 defaultdate" value="<?php echo date('Y-m-d'); ?>" />
+
+				    <input type='text' id="dailyDate" name="dailyDate" class="form-control datetimepicker1 defaultdate" value="" />
 				    <span class="input-group-addon">
 					<span class="glyphicon glyphicon-calendar"></span>
 				    </span>
