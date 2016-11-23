@@ -1395,6 +1395,28 @@ function master_update_percentage()
             $this->db->insert('shift_details',$data);
             redirect('payslipCtr/attendance');
         }
+	else if($statusVal=='LOP'){
+            $data=array(
+                'SFT_EMP_NAME'=> $this->input->post('emp_name'),
+                'SFT_DATE'=> $date,
+                'SFT_MRNG_STRATTIME'=> $this->input->post('mrngStartTime'),
+                'SFT_MRNG_ENDTIME'=> $this->input->post('mrngEndTime'),
+                'SFT_EVE_STARTTIME'=> $this->input->post('eveStartTime'),
+                'SFT_EVE_ENDTIME'=> $this->input->post('eveEndTime'),
+                'SFT_BREAK_HOUR'=> $this->input->post('breakTime'),
+                'SFT_WORKING_HOUR'=> $this->input->post('workHours'),
+                'SFT_DAY'=> $this->input->post('numOfDays'),
+		'SFT_LOP_LEAVE'=> 'TRUE',
+                'SFT_MONTH'=> $month,
+                'SFT_YEAR'=> $year,
+		'SFT_STATUS'=>$statusVal,
+		'SFT_REMARKS'=>$this->input->post('remarks'),
+		'SFT_VALUE'=>'1'
+	    );
+            $this->db->insert('shift_details',$data);
+            redirect('payslipCtr/attendance');
+        }
+	
 	else if($statusVal=='Half-Day'){
             $data=array(
                 'SFT_EMP_NAME'=> $this->input->post('emp_name'),
@@ -1435,8 +1457,6 @@ function master_update_percentage()
             $this->db->insert('shift_details',$data);
             redirect('payslipCtr/attendance');
         }
-	
-        
     }
     
    function update_Shift_details($val){
